@@ -2638,6 +2638,7 @@ void process_static_variable(void)
  *     return ;
  *     break ;
  *     expr ;
+ * 	   ; (Empty statement)
  */
 
 struct type* lookup_primitive_type(void);
@@ -2729,6 +2730,10 @@ void statement(void)
 		require_extra_token();
 
 		process_static_variable();
+	} else if (match(";", global_token->s))
+	{
+		/* empty statement */
+		require_extra_token();
 	}
 	else
 	{
